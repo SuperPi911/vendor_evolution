@@ -85,7 +85,9 @@ PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := \
     art/build/boot/boot-image-profile.txt
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/etc/preloaded-classes
+    system/etc/preloaded-classes \
+    system/etc/permissions/privapp-permissions-appbackup.xml \
+    system/priv-app/AppDataBackup/AppDataBackup.apk
 
 # Private keys
 ifeq ($(EVO_BUILD_TYPE),Official)
