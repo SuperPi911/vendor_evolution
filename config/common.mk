@@ -15,9 +15,14 @@ PRODUCT_SOURCE_ROOT_DIRS += -prebuilts/misc/protobuf_vendorcompat
 
 # Pixel additions
 ifeq ($(WITH_GMS),true)
+# Google-branded Settings/SystemUI ship as prebuilts in official EvoX vendor trees
+# (evo-tensor blobs). Our TheMuppets-based vendor trees do not provide them, so
+# default to the AOSP apps (known-good) unless explicitly enabled.
+ifeq ($(TARGET_ENABLE_GOOGLE_SETTINGS),true)
 PRODUCT_PACKAGES += \
     SettingsGoogle \
     SystemUIGoogle
+endif
 
 $(call inherit-product, vendor/pixel-style/config/common.mk)
 TARGET_INCLUDE_MOSEY ?= false
@@ -346,9 +351,13 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     Settings \
     CarSystemUI \
     NexusLauncherRelease \
-    SettingsGoogle \
-    SystemUIGoogle \
     SystemUI
+
+ifeq ($(TARGET_ENABLE_GOOGLE_SETTINGS),true)
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    SettingsGoogle \
+    SystemUIGoogle
+endif
 
 PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.systemuicompilerfilter=speed
