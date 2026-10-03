@@ -12,6 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// EvoX: keep the combined Wi-Fi + mobile data "Internet" Quick Settings tile.
+// Upstream pins qs_split_internet_tile_rw = ENABLED in the cp2a release aconfig
+// value set, replacing the Internet tile with separate wifi/cell tiles. This
+// value set is merged last (RELEASE_ACONFIG_VALUE_SETS order), so DISABLED wins.
 aconfig_values {
   name: "aconfig-values-lineage-cp2a-com.android.systemui-all",
   package: "com.android.systemui",

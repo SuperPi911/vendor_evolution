@@ -46,4 +46,14 @@
 
     <!-- Whether memory from app_info_settings is available or not. -->
     <bool name="config_show_app_info_settings_memory">true</bool>
+
+    <!--
+        Settings intelligence package name. We ship the Google prebuilt
+        (SettingsIntelligenceGooglePrebuilt = com.google.android.settings.intelligence);
+        its Android.mk sets LOCAL_OVERRIDES_PACKAGES := SettingsIntelligence, which strips
+        the AOSP com.android.settings.intelligence from the image. Without this override
+        AOSP Settings' search provider check (Utils.isPackageEnabled) fails and the
+        Settings homepage search bar is hidden entirely.
+    -->
+    <string name="config_settingsintelligence_package_name" translatable="false">com.google.android.settings.intelligence</string>
 </resources>
