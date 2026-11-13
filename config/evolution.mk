@@ -62,11 +62,17 @@ $(call inherit-product-if-exists, vendor/google/faceunlock/config.mk)
 else ifeq ($(TARGET_PROVIDES_FACE_UNLOCK_HAL), false)
 ifneq ($(TARGET_FACE_UNLOCK_SUPPORTED),false)
 # Supported Pixels get face unlock from their device trees (face HAL and
-# overlays), so don't build the generic one there
+# overlays), so don't build the generic one there.
+# EvoX: keep the generic FaceUnlock app on the Pixel 9 family
+# (tokay/caiman/komodo/comet/tegu). This tree does not ship
+# vendor/google/faceunlock and our device trees have no face enrollment
+# overlay, so excluding them (as upstream 12.4 started doing) removed face
+# unlock entirely: no FaceUnlock.apk, no biometrics.face permission XML and
+# no ro.face.sense_service prop in system_ext. 12.3 built it for these
+# devices, so keep doing that.
 ifeq ($(filter $(LINEAGE_BUILD), \
     cheetah panther lynx \
     husky shiba akita felix tangorpro \
-    tokay caiman komodo comet tegu \
     mustang blazer frankel rango \
     stallion yogi kodiak grizzly cubs \
     ),)
