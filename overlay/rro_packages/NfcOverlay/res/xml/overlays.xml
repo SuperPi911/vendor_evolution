@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <overlay>
     <item target="bool/enable_nfc_default" value="false" />
-<<<<<<< HEAD
     <item target="bool/enable_nfc_url_open_dialog" value="true" />
     <item target="bool/secure_nfc_default" value="true" />
-=======
->>>>>>> 8d832378 (Disable nfc by default)
 </overlay>
