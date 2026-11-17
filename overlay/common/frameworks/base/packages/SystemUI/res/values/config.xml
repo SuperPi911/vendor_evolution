@@ -54,6 +54,30 @@
          screenshot has been saved to work profile. If blank, a default icon will be shown. -->
     <string name="config_sceenshotWorkProfileFilesApp" translatable="false">com.android.documentsui/.files.LauncherActivity</string>
 
+    <!-- Package of the launcher that ships on the device. System UI uses this to launch the
+         launcher's ACTION_PICK widget picker (see CommunalEditModeViewModel) and to apply theme
+         overlays to the launcher. The AOSP default is com.android.launcher3, but Pixel devices
+         ship NexusLauncherRelease (com.google.android.apps.nexuslauncher) and do not install
+         Launcher3, so the widget picker intent would never resolve. -->
+    <string name="launcher_overlayable_package" translatable="false">com.google.android.apps.nexuslauncher</string>
+
+    <!-- App that implements the wallpaper picker and lockscreen customization. The AOSP default is
+         com.android.wallpaper (WallpaperPicker2), but Pixel devices ship
+         WallpaperPickerGoogleRelease (com.google.android.apps.wallpaper), which overrides
+         WallpaperPicker2/ThemePicker. With the AOSP default the lockscreen long-press "Customize"
+         button launches an unresolvable ACTION_SET_WALLPAPER intent. -->
+    <string name="config_wallpaperPickerPackage" translatable="false">com.google.android.apps.wallpaper</string>
+
+    <!-- Package that provides the theme picker (also WallpaperPickerGoogleRelease on Pixel). Used
+         by System UI to apply icon/shape/color overlays to the theme picker. -->
+    <string name="themepicker_overlayable_package" translatable="false">com.google.android.apps.wallpaper</string>
+
+    <!-- Whether long-pressing the lock screen shows the "Customize lock screen" button. The AOSP
+         default is false, but Pixel/Evolution builds enable it (SystemUIGoogle sets it true) so
+         the user can reach lockscreen customization (clock, shortcuts, wallpaper) from the lock
+         screen. Restored here because this build uses the AOSP System UI. -->
+    <bool name="long_press_keyguard_customize_lockscreen_enabled">true</bool>
+
     <!-- Whether or not to show the UMO on the glanceable hub when media is playing. -->
     <bool name="config_showUmoOnHub">true</bool>
 
