@@ -110,6 +110,20 @@
     <!-- Whether desktop mode is supported on the current device  -->
     <bool name="config_isDesktopModeSupported">true</bool>
 
+    <!-- Desktop-mode / connected-display tuning. The auto-generated product RRO built from this
+         overlay is applied after the device and pixel-style overlays (same priority, ordered by
+         path), so these values win. -->
+    <!-- Do not force a connected display to the low (~60 Hz) synchronization refresh rate. The
+         zumapro overlay enables this, which makes DisplayModeDirector drop the connected display's
+         own refresh-rate vote, locking it to ~60 Hz. Any resolution the monitor only offers at a
+         different refresh rate is then hidden from Settings -> Display -> <external display> ->
+         Resolution, which is why the resolution picker appears broken. -->
+    <bool name="config_refreshRateSynchronizationEnabled">false</bool>
+
+    <!-- Allow the real live wallpaper on the connected/desktop display instead of the blue
+         GradientColorWallpaper fallback. -->
+    <bool name="config_isLiveWallpaperSupportedInDesktopExperience">true</bool>
+
     <!-- Flag indicating whether we should enable the adaptive sleep.-->
     <bool name="config_adaptive_sleep_available">true</bool>
     <!-- The component name for the default system attention service.
