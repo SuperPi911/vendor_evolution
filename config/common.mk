@@ -337,6 +337,14 @@ endif
 
 # Blur
 TARGET_ENABLE_BLUR ?= true
+ifeq ($(EVOX_TEST_DISABLE_BLUR), true)
+# Diagnostic A/B switch only, not for production. Advertise no background-blur
+# support so SurfaceFlinger/SystemUI never create blur regions or run the
+# per-frame blur draw callback. Used to bisect the 12.4 text-input regression.
+TARGET_ENABLE_BLUR := false
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.surface_flinger.supports_background_blur=0
+endif
 ifeq ($(TARGET_ENABLE_BLUR), true)
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.supports_background_blur=1
